@@ -24,7 +24,7 @@ doc: |+
   - [GATK](https://github.com/broadinstitute/gatk): `4.2.0.0`
   - [Strelka2](https://github.com/Illumina/strelka): `2.9.10`
   - [Manta](https://github.com/Illumina/manta): `1.6.0`
-  - [SvABA](https://github.com/walaj/svaba): `1.1.0`
+  - [SvABA](https://github.com/walaj/svaba): `1.2.0`
 
   ### Annotators
 

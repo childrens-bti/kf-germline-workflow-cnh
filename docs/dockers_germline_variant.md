@@ -60,7 +60,7 @@ samtools_view.cwl|pgc-images.sbgenomics.com/d3b-bixu/samtools:1.15.1
 scatter_ploidy_calls_by_sample.cwl|pgc-images.sbgenomics.com/d3b-bixu/gatk:4.2.0.0R
 script_dynamicallycombineintervals.cwl|pgc-images.sbgenomics.com/d3b-bixu/python:2.7.13
 strelka2_germline.cwl|pgc-images.sbgenomics.com/d3b-bixu/strelka:v2.9.10
-svaba.cwl|pgc-images.sbgenomics.com/d3b-bixu/svaba:1.1.0
+svaba.cwl|pgc-images.sbgenomics.com/childrens-bti/svaba:1.2.0
 tar.cwl|None
 variant_effect_predictor_105.cwl|ensemblorg/ensembl-vep:release_105.0
 verifybamid_contamination_conditional.cwl|pgc-images.sbgenomics.com/d3b-bixu/verifybamid:1.0.2

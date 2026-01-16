@@ -17,8 +17,8 @@ doc: |
   ## Relevant Softwares and Versions
 
   - [Manta](https://github.com/Illumina/manta): `1.6.0`
-  - [SvABA](https://github.com/walaj/svaba): `1.1.0`
-  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.1.1`
+  - [SvABA](https://github.com/walaj/svaba): `1.2.0`
+  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.5.3`
 
   ### Manta
 
@@ -66,6 +66,10 @@ doc: |
   (SV). This tool compiles functionally, regulatory and clinically relevant
   information and aims at providing annotations useful to i) interpret SV
   potential pathogenicity and ii) filter out SV potential false positives.
+  
+  AnnotSV v3.5.3 implements the ACMG/ClinGen guidelines for SV interpretation, 
+  providing an ACMG class (1-5: Benign, Likely Benign, VUS, Likely Pathogenic, 
+  Pathogenic) and an ACMG score based on comprehensive scoring criteria.
 
   ## Input Files
 
@@ -73,7 +77,7 @@ doc: |
       - `germline_reads`: The germline BAM/CRAM input that has been aligned to a reference genome.
       - `indexed_reference_fasta`: The reference genome fasta (and associated indicies) to which the germline BAM/CRAM was aligned.
   - AnnotSV
-      - `annotsv_annotations_dir`: These annotations are simply those from the install-human-annotation installation process run during AnnotSV installation (see: https://github.com/lgmgeo/AnnotSV/#quick-installation). Specifically these are the annotations installed with v3.1.1 of the software. Newer or older annotations can be slotted in here as needed.
+      - `annotsv_annotations_dir`: These annotations are simply those from the install-human-annotation installation process run during AnnotSV installation (see: https://github.com/lgmgeo/AnnotSV/#quick-installation). For v3.5.3, ensure annotations include ACMG/ClinGen criteria files for proper pathogenicity classification. These include gene annotations, regulatory elements, pathogenic databases, and population frequency data required for ACMG scoring.
 
   ## Output Files
 
@@ -126,8 +130,8 @@ inputs:
           name: Homo_sapiens_assembly38.fasta.64.pac}, {class: File, path: 60639015357c3a53540ca7a9, name: Homo_sapiens_assembly38.fasta.64.sa}]}
   germline_reads: {type: 'File', secondaryFiles: [{pattern: '^.bai', required: false}, {pattern: '.bai', required: false}, {pattern: '^.crai',
         required: false}, {pattern: '.crai', required: false}], doc: "Input BAM file", "sbg:fileTypes": "BAM, CRAM"}
-  annotsv_annotations_dir: {type: 'File', doc: "TAR.GZ'd Directory containing AnnotSV annotations", "sbg:fileTypes": "TAR, TAR.GZ,
-      TGZ", "sbg:suggestedValue": {class: File, path: 6328ab26d01163633dabcc2e, name: annotsv_311_plus_ens105_annotations_dir.tgz}}
+  annotsv_annotations_dir: {type: 'File', doc: "TAR.GZ'd Directory containing AnnotSV annotations. For v3.5.3, use annotations with ACMG classification criteria", "sbg:fileTypes": "TAR, TAR.GZ,
+      TGZ", "sbg:suggestedValue": {class: File, path: 6328ab26d01163633dabcc2e, name: annotsv_353_annotations_dir.tgz}}
   annotsv_genome_build:
     type:
     - 'null'

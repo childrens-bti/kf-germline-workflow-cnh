@@ -26,7 +26,7 @@ doc: |
 requirements:
   - class: InlineJavascriptRequirement
   - class: DockerRequirement
-    dockerPull: 'pgc-images.sbgenomics.com/d3b-bixu/svaba:1.1.0'
+    dockerPull: 'pgc-images.sbgenomics.com/childrens-bti/svaba:1.2.0'
   - class: ResourceRequirement
     ramMin: $(inputs.ram * 1000)
     coresMin: $(inputs.cores)

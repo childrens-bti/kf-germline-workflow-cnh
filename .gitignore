@@ -348,3 +348,42 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+### Custom additions below this line ###
+# CWL job and temp files
+*.cwl.json
+*.inputs.json
+*.outputs.json
+run_data.sh
+*.err
+*.out
+tmp/
+.vscode/
+test_focal_cn/
+.cwl-out/
+.cwl-tmp/
+# Output and result files
+*.bam
+*.bai
+*.vcf
+*.gz
+*.zip
+outputs/*
+!outputs/.gitkeep
+params/*
+!params/.gitkeep
+test/
+logs/*
+!logs/.gitkeep
+sbg-hints/* 
+!sbg-hints/.gitkeep
+
+# harmonized data
+data/*
+!data/.gitkeep
+# manifest files
+manifests/*
+!manifests/.gitkeep
+
+Dockerfiles/
+mount_s3.sh

@@ -12,7 +12,7 @@ Manta and SvABA to call varaiants then annotates these variants using AnnotSV.
 ## Relevant Softwares and Versions
 
 - [Manta](https://github.com/Illumina/manta): `1.6.0`
-- [SvABA](https://github.com/walaj/svaba): `1.1.0`
+- [SvABA](https://github.com/walaj/svaba): `1.2.0`
 - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.1.1`
 
 ### Manta
