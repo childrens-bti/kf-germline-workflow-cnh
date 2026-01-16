@@ -136,7 +136,7 @@ inputs:
   padding: {type: 'int?', doc: "Length (in bp) of the padding regions on each side of the intervals. This must be the same value used
       for all case samples."}
   bin_length: {type: 'int?', doc: "Length (in bp) of the bins. If zero, no binning will be performed."}
-  intervals: {type: 'File', doc: "Picard or GATK-style interval list of regions to process. For WGS, this should typically only include
+    intervals: {type: 'File?', doc: "Picard or GATK-style interval list of regions to process. For WGS, this should typically only include
       the chromosomes of interest.", "sbg:fileTypes": "INTERVALS, INTERVAL_LIST, LIST"}
   blacklist_intervals: {type: 'File?', doc: "Picard or GATK-style interval list of regions to ignore.", "sbg:fileTypes": "INTERVALS,
       INTERVAL_LIST, LIST"}
