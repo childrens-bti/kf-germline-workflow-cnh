@@ -25,7 +25,6 @@ doc: |
   A BWA-MEM index reference genome must also be supplied with -G.
 requirements:
   - class: InlineJavascriptRequirement
-  - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'pgc-images.sbgenomics.com/childrens-bti/svaba:1.2.0'
   - class: ResourceRequirement
@@ -85,11 +84,11 @@ outputs:
   bps: { type: 'File', outputBinding: { glob: "*.bps.txt.gz" }, doc: "Raw, unfiltered variants" }
   contigs: { type: 'File', outputBinding: { glob: "*.contigs.bam" }, doc: "All assembly contigs as aligned to the reference with BWA-MEM" }
   log: { type: 'File', outputBinding: { glob: "*.log" }, doc: "Log file giving run-time information, including CPU and Wall time (and how it was partitioned among the tasks), number of reads retrieved and contigs assembled for each region" }
-  germline_indel_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.$(inputs.normal_bams ? 'germline.' : '')indel.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing germline indels that PASS filtration" }
-  germline_indel_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.unfiltered.$(inputs.normal_bams ? 'germline.' : '')indel.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing all germline indels, including non-PASS variants." }
-  germline_sv_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.$(inputs.normal_bams ? 'germline.' : '')sv.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing germline structural variants that PASS filtration" }
-  germline_sv_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.unfiltered.$(inputs.normal_bams ? 'germline.' : '')sv.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing all germline structural variants, including non-PASS variants." }
-  somatic_indel_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.somatic.indel.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing somatic indels that PASS filtration." }
-  somatic_indel_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.unfiltered.somatic.indel.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing all somatic indels, including non-PASS variants." }
-  somatic_sv_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.somatic.sv.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing somatic structural variants that PASS filtration." }
-  somatic_sv_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.unfiltered.somatic.sv.vcf.gz },  secondaryFiles: [{pattern: '.tbi', required: true}], doc: "VCF containing somatic structural variants, including non-PASS variants." }
+  germline_indel_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.$(inputs.normal_bams ? 'germline.' : '')indel.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing germline indels that PASS filtration" }
+  germline_indel_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.unfiltered.$(inputs.normal_bams ? 'germline.' : '')indel.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing all germline indels, including non-PASS variants." }
+  germline_sv_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.$(inputs.normal_bams ? 'germline.' : '')sv.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing germline structural variants that PASS filtration" }
+  germline_sv_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: "$(inputs.output_basename).svaba.unfiltered.$(inputs.normal_bams ? 'germline.' : '')sv.vcf.gz" }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing all germline structural variants, including non-PASS variants." }
+  somatic_indel_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.somatic.indel.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing somatic indels that PASS filtration." }
+  somatic_indel_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.unfiltered.somatic.indel.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing all somatic indels, including non-PASS variants." }
+  somatic_sv_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.somatic.sv.vcf.gz }, secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing somatic structural variants that PASS filtration." }
+  somatic_sv_unfiltered_vcf_gz: { type: 'File?', outputBinding: { glob: $(inputs.output_basename).svaba.unfiltered.somatic.sv.vcf.gz },  secondaryFiles: [{pattern: '.tbi', required: false}], doc: "VCF containing somatic structural variants, including non-PASS variants." }
