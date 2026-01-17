@@ -25,6 +25,7 @@ doc: |
   A BWA-MEM index reference genome must also be supplied with -G.
 requirements:
   - class: InlineJavascriptRequirement
+  - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'pgc-images.sbgenomics.com/childrens-bti/svaba:1.2.0'
   - class: ResourceRequirement
