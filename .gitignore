@@ -370,9 +370,6 @@ test_focal_cn/
 *.zip
 outputs/*
 !outputs/.gitkeep
-params/*
-!params/.gitkeep
-!params/kfdrc-germline-variant-wf_inputs.yml
 test/
 logs/*
 !logs/.gitkeep
@@ -386,5 +383,4 @@ data/*
 manifests/*
 !manifests/.gitkeep
 
-Dockerfiles/
 mount_s3.sh
