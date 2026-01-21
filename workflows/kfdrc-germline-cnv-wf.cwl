@@ -373,7 +373,9 @@ steps:
     in:
       run_gatk_gcnv: run_gatk_gcnv
       annotations_dir_tgz: annotsv_annotations_dir
-      sv_input_file: gatk_gcnv_case/genotyped_segments_vcfs
+      sv_input_file:
+        source: gatk_gcnv_case/genotyped_segments_vcfs
+        default: []
       genome_build: annotsv_genome_build
     out: [annotated_calls, unannotated_calls]
 hints:

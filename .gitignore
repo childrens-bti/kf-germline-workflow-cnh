@@ -372,6 +372,7 @@ outputs/*
 !outputs/.gitkeep
 params/*
 !params/.gitkeep
+!params/kfdrc-germline-variant-wf_inputs.yml
 test/
 logs/*
 !logs/.gitkeep
