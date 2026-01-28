@@ -20,7 +20,7 @@ baseCommand: []
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       bcftools merge --file-list files_to_merge.txt
 
 inputs:

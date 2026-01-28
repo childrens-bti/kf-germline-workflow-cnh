@@ -271,16 +271,16 @@ maximum_number_events_per_sample: 120
 # ============================================================================
 
 # VEP resources
-vep_ram: 32  # in GB
-vep_cpu: 16  # number of cores
+vep_ram: 64  # in GB
+vep_cpu: 32  # number of cores
 
 # Strelka2 resources
 strelka2_cpu: 32
 strelka2_ram: 64  # in GB
 
 # Freebayes resources
-# freebayes_cpu: 4
-# freebayes_ram: 8
+freebayes_cpu: 32
+freebayes_ram: 64  # in GB
 
 # SvABA resources
 svaba_cpu: 24
@@ -295,13 +295,13 @@ svaba_ram: 64
 # ============================================================================
 
 # Enable/disable specific variant calling modules (default: all true)
-run_gatk_gcnv: false     # GATK Germline CNV calling
-run_cnvnator: false      # CNVnator CNV calling
-run_gatk_gsnv: false     # GATK Germline SNV calling
-run_freebayes: false     # Freebayes SNV calling
-run_strelka: false       # Strelka2 SNV calling
-run_svaba: true         # SvABA structural variant calling
-run_manta: false         # Manta structural variant calling
+run_gatk_gcnv: false    # GATK gCNV CNV calling (disabled for SNV-only)
+run_cnvnator: false     # CNVnator CNV calling (disabled for SNV-only)
+run_gatk_gsnv: true     # GATK Germline SNV calling
+run_freebayes: true     # Freebayes SNV calling
+run_strelka: true       # Strelka2 SNV calling
+run_svaba: false        # SvABA structural variant calling
+run_manta: false        # Manta structural variant calling
 
 # ============================================================================
 # OPTIONAL INPUTS - Pre-computed gVCF (skip gVCF generation)

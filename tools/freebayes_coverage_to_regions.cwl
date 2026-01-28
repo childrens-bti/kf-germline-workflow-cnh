@@ -25,12 +25,12 @@ baseCommand: []
 
 arguments:
   - position: 0
-    valueFrom: >
+    valueFrom: >-
       samtools depth -o depths.txt
   - position: 10
     prefix: "&&"
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       python3 coverage_to_regions.py depths.txt
 
 stdout: regions.txt

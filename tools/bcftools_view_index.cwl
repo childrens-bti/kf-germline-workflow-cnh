@@ -15,16 +15,16 @@ baseCommand: []
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       bcftools view
   - position: 90
     prefix: "&&"
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       $(inputs.output_type == "b" || inputs.output_type == "z" ? "bcftools index --threads " + inputs.cpu : "echo DONE")
   - position: 99
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       $(inputs.output_type == "b" || inputs.output_type == "z" ? inputs.output_filename : "")
 
 inputs:
