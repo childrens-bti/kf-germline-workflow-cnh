@@ -36,7 +36,7 @@ inputs:
       items: File
       inputBinding:
         prefix: -I
-    secondaryFiles: [.tbi]
+    secondaryFiles: [{pattern: '.tbi', required: false}]
     inputBinding:
       position: 1
   reference_dict: File

@@ -30,24 +30,24 @@ indexed_reference_fasta:
 # Aligned reads (BAM or CRAM format)
 aligned_reads:
   class: File
-  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.cram
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.cram
   secondaryFiles:
     - class: File
-      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.cram.crai
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.cram.crai
 
 # Input gVCF (optional - if provided, skips gVCF creation)
 input_gvcf:
   class: File
-  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.g.vcf.gz
   secondaryFiles:
     - class: File
-      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz.tbi
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.g.vcf.gz.tbi
 
 # Output basename for all results
-output_basename: "BA_JC7Y94TC_4f72a221-39f4-4010-8bc9-6cac71345a88"
+output_basename: "BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9"
 
 # Biospecimen name
-biospecimen_name: "BA_JC7Y94TC"
+biospecimen_name: "BA_2ES4JBXY"
 
 # SNV calling regions (BED or INTERVALLIST format)
 snv_calling_regions:
@@ -128,9 +128,10 @@ one_thousand_genomes_resource_vcf:
       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/1000G_phase1.snps.high_confidence.hg38.vcf.gz.tbi
 
 # Pedigree file for sample relationships
+# Using the actual ped file available for this sample (task ID is different here)
 ped:
   class: File
-  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_4f72a221-39f4-4010-8bc9-6cac71345a88.peddy.peddy.ped
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_3647f6b6-935f-4ace-bdfa-37b9625ddfd6.peddy.peddy.ped
 
 # VEP cache for annotation
 vep_cache:
@@ -310,10 +311,10 @@ run_manta: false        # Manta structural variant calling
 # If you already have a gVCF for this sample, provide it here to skip gVCF creation
 gvcf:
   class: File
-  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.g.vcf.gz
   secondaryFiles:
     - class: File
-      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz.tbi
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/BA_2ES4JBXY_20251031_af404b98-557d-4da1-a7f4-d0c8d9c7f0c9.g.vcf.gz.tbi
 
 # ============================================================================
 # OPTIONAL INPUTS - VEP and annotation options
