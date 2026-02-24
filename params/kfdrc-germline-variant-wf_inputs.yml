@@ -1,0 +1,326 @@
+# Kids First DRC Germline Variant Workflow - Input File Template
+# This is a template for running the kfdrc-germline-variant-wf.cwl workflow
+
+# ============================================================================
+# REQUIRED INPUTS
+# ============================================================================
+
+# Reference genome (must have all associated indices)
+indexed_reference_fasta:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.fai
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.dict
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.alt
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.amb
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.ann
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.bwt
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.pac
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.fasta.64.sa
+
+# Aligned reads (BAM or CRAM format)
+aligned_reads:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.cram
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.cram.crai
+
+# Input gVCF (optional - if provided, skips gVCF creation)
+input_gvcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz.tbi
+
+# Output basename for all results
+output_basename: "BA_JC7Y94TC_4f72a221-39f4-4010-8bc9-6cac71345a88"
+
+# Biospecimen name
+biospecimen_name: "BA_JC7Y94TC"
+
+# SNV calling regions (BED or INTERVALLIST format)
+snv_calling_regions:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/wgs_calling_regions.hg38.interval_list
+
+# Handcurated intervals for gVCF genotyping
+snv_unpadded_intervals_file:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/hg38.even.handcurated.20k.intervals
+
+# Evaluation interval list
+snv_evaluation_interval_list:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/wgs_evaluation_regions.hg38.interval_list
+
+# AnnotSV annotations directory (tar.gz)
+annotsv_annotations_dir:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/annotsv_353_annotations.tar.gz
+
+# AnnotSV genome build
+annotsv_genome_build: "GRCh38"
+
+# Contamination site files
+contamination_sites_bed:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.contam.bed
+
+contamination_sites_mu:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.contam.mu
+contamination_sites_ud:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.contam.UD
+
+# GATK resource VCFs for variant recalibration
+axiomPoly_resource_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz.tbi
+
+dbsnp_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.dbsnp138.vcf
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Homo_sapiens_assembly38.dbsnp138.vcf.idx
+
+hapmap_resource_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/hapmap_3.3.hg38.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/hapmap_3.3.hg38.vcf.gz.tbi
+
+mills_resource_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz.tbi
+
+omni_resource_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/1000G_omni2.5.hg38.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/1000G_omni2.5.hg38.vcf.gz.tbi
+
+one_thousand_genomes_resource_vcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/1000G_phase1.snps.high_confidence.hg38.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/references/1000G_phase1.snps.high_confidence.hg38.vcf.gz.tbi
+
+# Pedigree file for sample relationships
+ped:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_4f72a221-39f4-4010-8bc9-6cac71345a88.peddy.peddy.ped
+
+# VEP cache for annotation
+vep_cache:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/references/homo_sapiens_merged_vep_105_indexed_GRCh38.tar.gz
+
+# ============================================================================
+# OPTIONAL INPUTS - Experiment metadata
+# ============================================================================
+
+experiment_type: "WGS"  # Options: "WGS", "WXS", "Targeted Sequencing"
+
+# ============================================================================
+# OPTIONAL INPUTS - SNV parameters
+# ============================================================================
+
+snv_intervals_break_bands_at_multiples_of: 1000000
+snv_intervals_scatter_count: 50
+snv_intervals_subdivision_mode: "BALANCING_WITHOUT_INTERVAL_SUBDIVISION_WITH_OVERFLOW"
+
+# ============================================================================
+# OPTIONAL INPUTS - SNV annotation resources
+# ============================================================================
+
+# echtvar annotations (gnomAD v3.1.1)
+echtvar_anno_zips:
+  - class: File
+    path: /home/ubuntu/kf-germline-workflow-cnh/data/references/gnomad.v3.1.1.custom.echtvar.zip
+
+# Optional annotation resources
+# clinvar_annotation_vcf:
+#   class: File
+#   path: /home/ubuntu/kf-germline-workflow-cnh/data/references/clinvar_20231028.hg38_fmt.vcf.gz
+#   secondaryFiles:
+#     - class: File
+#       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/clinvar_20231028.hg38_fmt.vcf.gz.tbi
+
+# dbnsfp: VEP plugin file for dbNSFP annotations
+# dbnsfp:
+#   class: File
+#   path: /home/ubuntu/kf-germline-workflow-cnh/data/references/dbNSFP.txt.gz
+#   secondaryFiles:
+#     - class: File
+#       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/dbNSFP.txt.gz.tbi
+#     - class: File
+#       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/dbNSFP.txt.gz.readme.txt
+
+# cadd_indels: VEP plugin file for CADD indel annotations
+# cadd_indels:
+#   class: File
+#   path: /home/ubuntu/kf-germline-workflow-cnh/data/references/cadd_indels.vcf.gz
+#   secondaryFiles:
+#     - class: File
+#       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/cadd_indels.vcf.gz.tbi
+
+# cadd_snvs: VEP plugin file for CADD SNV annotations
+# cadd_snvs:
+#   class: File
+#   path: /home/ubuntu/kf-germline-workflow-cnh/data/references/cadd_snvs.vcf.gz
+#   secondaryFiles:
+#     - class: File
+#       path: /home/ubuntu/kf-germline-workflow-cnh/data/references/cadd_snvs.vcf.gz.tbi
+
+# intervar: Intervar VCF file for exonic SNV annotations
+# intervar:
+#   class: File
+#   path: /path/to/intervar.vcf.gz
+#   secondaryFiles:
+#     - class: File
+#       path: /path/to/intervar.vcf.gz.tbi
+
+# ============================================================================
+# OPTIONAL INPUTS - CNV parameters
+# ============================================================================
+
+# CNV intervals (optional - recommended for WGS to include only chromosomes of interest)
+# cnv_intervals:
+#   class: File
+#   path: /home/ubuntu/kf-germline-workflow-cnh/data/references/wgs_calling_regions.hg38.interval_list
+
+# CNV blacklist intervals (regions to ignore)
+# cnv_blacklist_intervals:
+#   class: File
+#   path: /path/to/cnv_blacklist.interval_list
+
+# CNV interval configuration
+# cnv_intervals_padding: 250
+# cnv_intervals_bin_length: 1000
+
+# GATK gCNV models (from cohort workflow)
+# contig_ploidy_model_tar:
+#   class: File
+#   path: /path/to/contig_ploidy_model.tar.gz
+
+# gcnv_model_tars:
+#   - class: File
+#     path: /path/to/model1.tar.gz
+#   - class: File
+#     path: /path/to/model2.tar.gz
+
+# CNVnator parameters
+cnvnator_bin_sizes: [100, 200, 300, 400, 500]
+# cnvnator_disable_gc_correction: false
+
+# ============================================================================
+# OPTIONAL INPUTS - Contamination
+# ============================================================================
+
+# Precalculated contamination value (skips VerifyBAMID if provided)
+# contamination: 0.05
+
+# ============================================================================
+# OPTIONAL INPUTS - Variant recalibration
+# ============================================================================
+
+# Maximum number of events for CNV QC
+maximum_number_events_per_sample: 120
+
+# SNP and INDEL max gaussians for VQSR
+# snp_max_gaussians: 4
+# indel_max_gaussians: 4
+
+# ============================================================================
+# OPTIONAL INPUTS - Resource allocation (CPU/RAM)
+# ============================================================================
+
+# VEP resources
+vep_ram: 32  # in GB
+vep_cpu: 16  # number of cores
+
+# Strelka2 resources
+strelka2_cpu: 32
+strelka2_ram: 64  # in GB
+
+# Freebayes resources
+# freebayes_cpu: 4
+# freebayes_ram: 8
+
+# SvABA resources
+svaba_cpu: 24
+svaba_ram: 64
+
+# Manta resources
+# manta_cpu: 8
+# manta_ram: 16
+
+# ============================================================================
+# OPTIONAL INPUTS - Module activation flags
+# ============================================================================
+
+# Enable/disable specific variant calling modules (default: all true)
+run_gatk_gcnv: false     # GATK Germline CNV calling
+run_cnvnator: false      # CNVnator CNV calling
+run_gatk_gsnv: false     # GATK Germline SNV calling
+run_freebayes: false     # Freebayes SNV calling
+run_strelka: false       # Strelka2 SNV calling
+run_svaba: true         # SvABA structural variant calling
+run_manta: false         # Manta structural variant calling
+
+# ============================================================================
+# OPTIONAL INPUTS - Pre-computed gVCF (skip gVCF generation)
+# ============================================================================
+
+# If you already have a gVCF for this sample, provide it here to skip gVCF creation
+gvcf:
+  class: File
+  path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz
+  secondaryFiles:
+    - class: File
+      path: /home/ubuntu/kf-germline-workflow-cnh/data/bti-private-us-east-1-prd-gilbert-lab/harmonized/BA_JC7Y94TC_20251031_6821ad23-9992-462a-8459-af5d66ba004b.g.vcf.gz.tbi
+
+# ============================================================================
+# OPTIONAL INPUTS - VEP and annotation options
+# ============================================================================
+
+vep_buffer_size: 100000  # Increase for speed, decrease for memory
+dbnsfp_fields: "SIFT4G_pred,Polyphen2_HDIV_pred,Polyphen2_HVAR_pred,LRT_pred,MutationTaster_pred"
+merged: true  # Set to true if using merged VEP cache
+bcftools_annot_clinvar_columns: "INFO/ALLELEID,INFO/CLNDN,INFO/CLNHGVS,INFO/CLNREVSTAT,INFO/CLNSIG"
+
+# ============================================================================
+# OPTIONAL INPUTS - Advanced GATK gCNV parameters
+# ============================================================================
+
+# Most users should not need to modify these parameters
+# ploidy_mapping_error_rate: 0.01
+# ploidy_sample_psi_scale: 0.001
+# gcnv_p_alt: 0.001
+# gcnv_cnv_coherence_length: 50000.0
+# gcnv_max_copy_number: 5
+# gcnv_mapping_error_rate: 0.01
+# gcnv_sample_psi_scale: 0.001
+# gcnv_depth_correction_tau: 10000.0

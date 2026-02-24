@@ -4,7 +4,7 @@ id: annotsv
 requirements:
 - class: ShellCommandRequirement
 - class: DockerRequirement
-  dockerPull: pgc-images.sbgenomics.com/d3b-bixu/annotsv:3.1.1
+  dockerPull: pgc-images.sbgenomics.com/childrens-bti/annotsv:3.5.3
 - class: InlineJavascriptRequirement
   expressionLib:
   - |2-
@@ -71,7 +71,8 @@ inputs:
     inputBinding:
       prefix: "-annotationMode"
       position: 1
-    doc: "Description of the types of lines produced by AnnotSV"
+    default: "both"
+    doc: "Description of the types of lines produced by AnnotSV. Default: both (includes full annotation with ACMG classification)"
   benign_af: { type: 'float?', inputBinding: { prefix: "-benignAF", position: 1 }, doc: "Allele frequency threshold to select the benign SV in the data sources" }
   candidate_genes_file: { type: 'File?', inputBinding: { prefix: "-candidateGenesFile", position: 1 }, doc: "Path of a file containing the candidate genes of the user (gene names can be space-separated, tabulation-separated, or line-break-separated)",  "sbg:fileTypes": "BED, CSV, TSV, TXT"}
   candidate_genes_filtering:
