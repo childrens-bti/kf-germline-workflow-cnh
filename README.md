@@ -20,6 +20,7 @@ Complete documentation can be found for the main workflow an its subworkflows he
     - [CNV Variant Workflow](./docs/GERMLINE_CNV_README.md)
     - [SNV Variant Workflow](./docs/GERMLINE_SNV_README.md)
       - Leverages the git submodule kf-annotation-tools for variant annotation with VEP 105 and gnomAD
+      - Supports both gnomAD v3.1.1 and v4.1.0 (both by default)
       - Details linked in the readme.
     - [SV Variant Workflow](./docs/GERMLINE_SV_README.md)
 
