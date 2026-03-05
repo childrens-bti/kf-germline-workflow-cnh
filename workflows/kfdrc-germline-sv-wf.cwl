@@ -141,6 +141,7 @@ inputs:
     doc: |
       The genome build of the reference fasta. AnnotSV is capable of annotating the following genomes: "GRCh37","GRCh38","mm9","mm10".
   output_basename: {type: 'string?', doc: "String value to use as basename for outputs"}
+  biospecimen_name: {type: 'string', doc: "String name of biospecimen to use as sample name in output VCFs"}
   run_svaba: {type: 'boolean?', default: true, doc: "Run the SVaba module?"}
   run_manta: {type: 'boolean?', default: true, doc: "Run the Manta module?"}
   svaba_cpu: {type: 'int?', doc: "CPUs to allocate to SVaba"}
@@ -148,8 +149,8 @@ inputs:
   manta_cpu: {type: 'int?', doc: "CPUs to allocate to Manta"}
   manta_ram: {type: 'int?', doc: "GB of RAM to allocate to Manta"}
 outputs:
-  svaba_indels: {type: 'File?', outputSource: svaba/germline_indel_vcf_gz, doc: "VCF containing INDEL variants called by SvABA"}
-  svaba_svs: {type: 'File?', outputSource: svaba/germline_sv_vcf_gz, doc: "VCF containing SV called by SvABA"}
+  svaba_indels: {type: 'File?', outputSource: svaba_reheader_indel/output_vcf_gz, doc: "VCF containing INDEL variants called by SvABA"}
+  svaba_svs: {type: 'File?', outputSource: svaba_reheader_sv/output_vcf_gz, doc: "VCF containing SV called by SvABA"}
   svaba_annotated_indels: {type: 'File?', outputSource: annotsv_svaba_indel/annotated_calls, doc: "TSV containing annotated variants
       from the svaba_indels output"}
   svaba_annotated_svs: {type: 'File?', outputSource: annotsv_svaba_sv/annotated_calls, doc: "TSV containing annotated variants from
@@ -179,6 +180,30 @@ steps:
       cores: svaba_cpu
       ram: svaba_ram
     out: [alignments, bps, contigs, log, germline_indel_vcf_gz, germline_indel_unfiltered_vcf_gz, germline_sv_vcf_gz, germline_sv_unfiltered_vcf_gz]
+  svaba_reheader_indel:
+    run: ../tools/bcftools_reheader_single_sample.cwl
+    when: $(inputs.run_svaba)
+    in:
+      run_svaba: run_svaba
+      input_vcf: svaba/germline_indel_vcf_gz
+      sample_name: biospecimen_name
+      output_filename:
+        source: svaba/germline_indel_vcf_gz
+        valueFrom: $(self.basename)
+      cpu: svaba_cpu
+    out: [output_vcf_gz]
+  svaba_reheader_sv:
+    run: ../tools/bcftools_reheader_single_sample.cwl
+    when: $(inputs.run_svaba)
+    in:
+      run_svaba: run_svaba
+      input_vcf: svaba/germline_sv_vcf_gz
+      sample_name: biospecimen_name
+      output_filename:
+        source: svaba/germline_sv_vcf_gz
+        valueFrom: $(self.basename)
+      cpu: svaba_cpu
+    out: [output_vcf_gz]
   manta:
     run: ../tools/manta.cwl
     when: $(inputs.run_manta)
@@ -201,7 +226,7 @@ steps:
     in:
       run_svaba: run_svaba
       annotations_dir_tgz: annotsv_annotations_dir
-      sv_input_file: svaba/germline_indel_vcf_gz
+      sv_input_file: svaba_reheader_indel/output_vcf_gz
       genome_build: annotsv_genome_build
     out: [annotated_calls, unannotated_calls]
   annotsv_svaba_sv:
@@ -210,7 +235,7 @@ steps:
     in:
       run_svaba: run_svaba
       annotations_dir_tgz: annotsv_annotations_dir
-      sv_input_file: svaba/germline_sv_vcf_gz
+      sv_input_file: svaba_reheader_sv/output_vcf_gz
       genome_build: annotsv_genome_build
     out: [annotated_calls, unannotated_calls]
   annotsv_manta_indel:

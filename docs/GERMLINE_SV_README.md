@@ -55,6 +55,23 @@ the -t flag), a single SV and a single indel VCF will be emitted.
 
 A BWA-MEM index reference genome must also be supplied with -G.
 
+#### SvABA sample-name normalization
+
+SvABA can emit VCF sample columns using a staged input path (for example, a
+localized BAM/CRAM path) instead of a user-friendly sample identifier. The
+workflow includes a post-call normalization step that rewrites the single
+sample column in SvABA VCF outputs before downstream annotation.
+
+- Tool used: `tools/bcftools_reheader_single_sample.cwl`
+- Applied to:
+    - SvABA germline SV VCF
+    - SvABA germline INDEL VCF
+- Sample name source:
+    - `biospecimen_name` (for BA-style sample IDs)
+
+This keeps SvABA sample naming aligned with SNV outputs and avoids path-like
+sample names in final outputs.
+
 ### AnnotSV
 
 AnnotSV is a program designed for annotating and ranking Structural Variations
@@ -76,8 +93,8 @@ potential pathogenicity and ii) filter out SV potential false positives.
     - `manta_svs`: Structural Variants called by Manta
     - `manta_indels`: Small INDELs called by Manta
 - SvABA
-    - `svaba_svs`: Structural Variants called by SvABA
-    - `svaba_indels`: Small INDELs called by SvABA
+    - `svaba_svs`: Structural Variants called by SvABA (sample column normalized)
+    - `svaba_indels`: Small INDELs called by SvABA (sample column normalized)
 - AnnotSV
     - `manta_annotated_svs`: This file contains all records from the `manta_svs` that AnnotSV could annotate.
     - `svaba_annotated_svs`: This file contains all records from the `svaba_svs` that AnnotSV could annotate.
