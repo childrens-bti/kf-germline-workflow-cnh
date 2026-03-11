@@ -620,6 +620,7 @@ steps:
       indexed_reference_fasta: indexed_reference_fasta
       germline_reads: aligned_reads
       output_basename: output_basename
+      biospecimen_name: biospecimen_name
       annotsv_annotations_dir: annotsv_annotations_dir
       annotsv_genome_build: annotsv_genome_build
       svaba_cpu: svaba_cpu
