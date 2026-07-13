@@ -30,7 +30,7 @@ doc: |+
 
   - [Ensembl VEP](https://github.com/Ensembl/ensembl-vep): `105`
   - [gnomAD](https://gnomad.broadinstitute.org/): `3.1.1`
-  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.1.1`
+  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.5.3`
 
 
   | Method    | CNV | SNV | SV | Annotation |
@@ -124,7 +124,7 @@ doc: |+
           - `intervar`: Intervar vcf-formatted file. Exonic SNVs only - for more comprehensive run InterVar. See docs for custom build instructions
   - Structural Variants
       - Annotation
-          - `annotsv_annotations_dir`: These annotations are simply those from the install-human-annotation installation process run during AnnotSV installation (see: https://github.com/lgmgeo/AnnotSV/#quick-installation). Specifically these are the annotations installed with v3.1.1 of the software. Newer or older annotations can be slotted in here as needed.
+          - `annotsv_annotations_dir`: These annotations are simply those from the install-human-annotation installation process run during AnnotSV installation (see: https://github.com/lgmgeo/AnnotSV/#quick-installation). Specifically these are the annotations installed with v3.5.3 of the software. Newer or older annotations can be slotted in here as needed.
 
   ## Output Files
 
@@ -473,8 +473,6 @@ outputs:
       output"}
   manta_indels: {type: 'File?', outputSource: sv/manta_indels, doc: "VCF containing INDEL variants called by Manta"}
   manta_svs: {type: 'File?', outputSource: sv/manta_svs, doc: "VCF containing SV called by Manta"}
-  manta_annotated_indels: {type: 'File?', outputSource: sv/manta_annotated_indels, doc: "TSV containing annotated variants from the
-      manta_indels output"}
   manta_annotated_svs: {type: 'File?', outputSource: sv/manta_annotated_svs, doc: "TSV containing annotated variants from the manta_svs
       output"}
 steps:
@@ -629,7 +627,7 @@ steps:
       manta_ram: manta_ram
       run_svaba: run_svaba
       run_manta: run_manta
-    out: [svaba_indels, svaba_svs, svaba_annotated_indels, svaba_annotated_svs, manta_indels, manta_svs, manta_annotated_indels, manta_annotated_svs]
+    out: [svaba_indels, svaba_svs, svaba_annotated_indels, svaba_annotated_svs, manta_indels, manta_svs, manta_annotated_svs]
 hints:
 - class: "sbg:maxNumberOfParallelInstances"
   value: 4
