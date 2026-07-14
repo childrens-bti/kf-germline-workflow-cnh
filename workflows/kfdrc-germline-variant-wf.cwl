@@ -3,7 +3,7 @@ class: Workflow
 id: kfdrc-germline-variant-wf
 label: Kids First DRC Germline Variant Workflow
 doc: |+
-  # Kids First Data Resource Center Germline Variant Workflow
+  # Kids First Data Resource Center Germline Variant Workflow (CNH updates)
 
   <p align="center">
     <img src="https://github.com/d3b-center/d3b-research-workflows/raw/master/doc/kfdrc-logo-sm.png">
