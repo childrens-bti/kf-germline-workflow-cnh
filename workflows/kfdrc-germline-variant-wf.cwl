@@ -654,5 +654,5 @@ $namespaces:
 - VCF
 - VEP
 "sbg:links":
-- id: 'https://github.com/childrens-bti/kf-germline-workflow-cnh/commits/v1.1.0'
+- id: 'https://github.com/childrens-bti/kf-germline-workflow-cnh/releases/tag/v1.1.0'
   label: github-release
