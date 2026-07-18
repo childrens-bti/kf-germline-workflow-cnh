@@ -15,20 +15,20 @@ baseCommand: []
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       bgzip --stdout
   - position: 9
     shellQuote: false
     prefix: '>'
-    valueFrom: >
+    valueFrom: >-
       $(inputs.output_filename)
   - position: 10
     shellQuote: false
     prefix: '&&'
-    valueFrom: >
+    valueFrom: >-
       tabix
   - position: 18
-    valueFrom: >
+    valueFrom: >-
       $(inputs.output_filename)
 inputs:
   input_file: { type: 'File', inputBinding: { position: 8 }, doc: "Input gff, bed, sam, or vcf file." }

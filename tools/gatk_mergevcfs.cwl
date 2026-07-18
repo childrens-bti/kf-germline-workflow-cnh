@@ -36,7 +36,6 @@ inputs:
       items: File
       inputBinding:
         prefix: -I
-    secondaryFiles: [.tbi]
     inputBinding:
       position: 1
   reference_dict: File

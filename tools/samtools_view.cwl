@@ -15,7 +15,7 @@ baseCommand: []
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       samtools view
 inputs:
   # View Positional Arguments
