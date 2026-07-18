@@ -2,11 +2,12 @@
 
 TOOL|DOCKER
 -|-
-annotsv.cwl|pgc-images.sbgenomics.com/d3b-bixu/annotsv:3.1.1
+annotsv.cwl|pgc-images.sbgenomics.com/childrens-bti/annotsv:3.5.3
 awk_parse_interval_list_contigs.cwl|None
 bcftools_annotate.cwl|pgc-images.sbgenomics.com/d3b-bixu/vcfutils:latest
 bcftools_concat.cwl|pgc-images.sbgenomics.com/d3b-bixu/vcfutils:latest
 bcftools_filter_vcf.cwl|pgc-images.sbgenomics.com/d3b-bixu/bcftools:1.20
+bcftools_reheader_single_sample.cwl|staphb/bcftools:1.17
 bcftools_strip_ann.cwl|pgc-images.sbgenomics.com/d3b-bixu/vcfutils:latest
 bcftools_view_index.cwl|staphb/bcftools:1.17
 bgzip_tabix.cwl|broadinstitute/gatk:4.4.0.0
