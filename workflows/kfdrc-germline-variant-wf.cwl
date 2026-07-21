@@ -1,7 +1,7 @@
 cwlVersion: v1.2
 class: Workflow
 id: kfdrc-germline-variant-wf
-label: Kids First DRC Germline Variant Workflow
+label: Kids First DRC Germline Variant Workflow (CNH updates)
 doc: |+
   # Kids First Data Resource Center Germline Variant Workflow (CNH updates)
 
@@ -29,8 +29,8 @@ doc: |+
   ### Annotators
 
   - [Ensembl VEP](https://github.com/Ensembl/ensembl-vep): `105`
-  - [gnomAD](https://gnomad.broadinstitute.org/): `3.1.1`
-  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.5.3`
+    - [gnomAD](https://gnomad.broadinstitute.org/): `3.1.1` and `4.1.0` (both by default)
+  - [AnnotSV](https://github.com/lgmgeo/AnnotSV/): `3.1.1`
 
 
   | Method    | CNV | SNV | SV | Annotation |
@@ -114,7 +114,7 @@ doc: |+
 
           Recommended:
           - `vep_cache`: TAR.GZ cache from ensembl/local converted cache
-          - `echtvar_anno_zips`: echtvar-formatted gnomAD v3.1.1 reference. See annotation docs for more info
+          - `echtvar_anno_zips`: echtvar-formatted gnomAD reference files. Supports both v3.1.1 and v4.1.0 (both by default). See annotation docs for more info
 
           Optional:
           - `clinvar_annotation_vcf`: ClinVar VCF used for annotation
@@ -369,8 +369,9 @@ inputs:
   bcftools_annot_clinvar_columns: {type: 'string?', doc: "csv string of columns from annotation to port into the input vcf", default: "INFO/ALLELEID,INFO/CLNDN,INFO/CLNDNINCL,INFO/CLNDISDB,INFO/CLNDISDBINCL,INFO/CLNHGVS,INFO/CLNREVSTAT,INFO/CLNSIG,INFO/CLNSIGCONF,INFO/CLNSIGINCL,INFO/CLNVC,INFO/CLNVCSO,INFO/CLNVI"}
   clinvar_annotation_vcf: {type: 'File?', secondaryFiles: [{pattern: '.tbi', required: true}], doc: "additional bgzipped annotation
       vcf file"}
-  echtvar_anno_zips: {type: 'File[]?', doc: "Annotation ZIP files for echtvar anno", "sbg:suggestedValue": [{class: File, path: 65c64d847dab7758206248c6,
-        name: gnomad.v3.1.1.custom.echtvar.zip}]}
+  echtvar_anno_zips: {type: 'File[]?', doc: "Annotation ZIP files for echtvar anno. Supports both gnomAD v3.1.1 and v4.1.0 (both by default).", "sbg:suggestedValue": [{class: File, path: 65c64d847dab7758206248c6,
+        name: gnomad.v3.1.1.custom.echtvar.zip}, {class: File, path: 6982705b5ddfaa35eff72c34,
+        name: gnomad.v4.1.0.custom.echtvar.zip}]}
   vep_buffer_size: {type: 'int?', default: 100000, doc: "Increase or decrease to balance speed and memory usage"}
   vep_cache: {type: 'File', doc: "tar gzipped cache from ensembl/local converted cache", "sbg:suggestedValue": {class: File, path: 6332f8e47535110eb79c794f,
       name: homo_sapiens_merged_vep_105_indexed_GRCh38.tar.gz}}
@@ -654,5 +655,5 @@ $namespaces:
 - VCF
 - VEP
 "sbg:links":
-- id: 'https://github.com/childrens-bti/kf-germline-workflow-cnh/releases/tag/v1.1.0'
+- id: 'https://github.com/childrens-bti/kf-germline-workflow-cnh/releases/tag/v2.0.0'
   label: github-release

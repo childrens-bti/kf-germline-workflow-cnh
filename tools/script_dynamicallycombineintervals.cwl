@@ -8,8 +8,8 @@ requirements:
 baseCommand: [python, -c]
 arguments:
   - position: 0
-    shellQuote: true
-    valueFrom: >-
+    shellQuote: false
+    valueFrom: |-
       def parse_interval(interval):
           colon_split = interval.split(":")
           chromosome = colon_split[0]
@@ -19,7 +19,7 @@ arguments:
           return chromosome, start, end
       def add_interval(chr, start, end, i):
           fn = "out-{:0>5d}.intervals".format(i)
-          lw = chr + ":" + str(start) + "-" + str(end) + "\n"
+          lw = chr + ":" + str(start) + "-" + str(end) + "\\n"
           with open(fn, "w") as fo:
               fo.writelines(lw)
           return chr, start, end

@@ -15,7 +15,7 @@ baseCommand: []
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       bcftools view
 
 inputs:

@@ -20,7 +20,7 @@ arguments:
   - position: 10
     prefix: '&&'
     shellQuote: false
-    valueFrom: >
+    valueFrom: >-
       $(inputs.subdivision_mode != null ? "" : "exit 0;")
       find ./temp_* -name *interval_list | sed 'p;s#temp_\([0-9]\+\).*#\1_scattered.interval_list#' | xargs -P $(inputs.cpu) -n 2 mv
 inputs:
