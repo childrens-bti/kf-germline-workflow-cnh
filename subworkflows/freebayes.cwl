@@ -53,7 +53,7 @@ steps:
   freebayes:
     hints:
     - class: 'sbg:AWSInstanceType'
-      value: c5.9xlarge
+      value: m5.8xlarge
     run: ../tools/freebayes.cwl
     scatter: [targets_file]
     in:

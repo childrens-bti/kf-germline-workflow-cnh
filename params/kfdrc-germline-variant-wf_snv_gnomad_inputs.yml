@@ -281,7 +281,7 @@ strelka2_ram: 64  # in GB
 
 # Freebayes resources
 freebayes_cpu: 32
-freebayes_ram: 64  # in GB
+freebayes_ram: 120  # in GB
 
 # SvABA resources
 svaba_cpu: 24
